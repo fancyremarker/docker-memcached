@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo $PASSWORD | saslpasswd2 -c memcached -p
+memcached -u root -S -p $PORT $@
