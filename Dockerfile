@@ -1,7 +1,8 @@
 FROM quay.io/aptible/ubuntu:14.04
 
-RUN apt-get update
-RUN apt-get -y install sasl2-bin memcached
+# https://github.com/docker/docker/issues/6345
+RUN ln -s -f /bin/true /usr/bin/chfn
+RUN apt-get update && apt-get -y install sasl2-bin memcached
 
 ADD templates/memcached-sasl /usr/bin/memcached-sasl
 RUN chmod +x /usr/bin/memcached-sasl
